@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="heracules.jmk.qna.dto">
-	<select id="selectAll" resultType="DeptDTO">
-		select deptno, dname, loc from
-		dept
+	<select id="selectAll" resultType="QnaDTO">
+		select qnaindex, qnatitle, qnacontents from
+		member_mk
 	</select>
-	<select id="select" parameterType="DeptDTO" resultType="DeptDTO">
+	<select id="select" parameterType="QnaDTO" resultType="QnaDTO">
 		select
-		deptno, dname, loc from dept
-		where deptno = #{deptno}
+		qnaindex, qnatitle, qnacontents from member_mk
+		where qnaindex = #{qnaindex}
 	</select>
-	<insert id="insert" parameterType="DeptDTO">
-		insert into dept (deptno,
-		dname, loc)
-		values(#{deptno}, #{dname}, #{loc})
+	<insert id="insert" parameterType="QnaDTO">
+		insert into member_mk (qnaindex,
+		qnatitle, qnacontents)
+		values(#{qnaindex}, #{qnatitle}, #{qnacontents})
 	</insert>
-	<update id="update" parameterType="DeptDTO">
-		update dept set dname =
-		#{dname}, loc=#{loc}
-		where deptno = #{deptno}
+	<update id="update" parameterType="QnaDTO">
+		update member_mk set qnatitle =
+		#{qnatitle}, qnacontents=#{qnacontents}
+		where qnaindex = #{qnaindex}
 	</update>
-	<delete id="delete" parameterType="DeptDTO">
-		delete from dept
-		where deptno =
-		#{deptno}
+	<delete id="delete" parameterType="QnaDTO">
+		delete from member_mk
+		where qnaindex =
+		#{qnaindex}
 	</delete>
 </mapper>
