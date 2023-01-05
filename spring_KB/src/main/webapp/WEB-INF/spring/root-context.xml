@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
 		http://mybatis.org/schema/mybatis-spring http://my
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
@@ -23,7 +24,35 @@
 			value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:xe" />
 		<property name="username" value="scott" />
 		<property name="password" value="tiger" />
-		
-		
 	</bean>
+
+	<!-- SqlSessionFactory (Bean) (Bean) . -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="sqlSessionFactoryBean">
+		<!-- DriverManagerDataSource SqlSessionFactoryBean setDataSource . -->
+		<property name="dataSource" ref="dataSource" />
+		<!--Configuration . -->
+		<property name="configLocation"
+			value="classpath:/configuration/config.xml" />
+		<!-- Mapper . -->
+		<property name="mapperLocations"
+			value="classpath:/mapper/mapper.xml" />
+	</bean>
+	<!-- SqlSession SqlSession . -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate"
+		id="sqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean" />
+	</bean>
+	<!-- 트랜잭션이 종료할 때 정상 종료인 커밋인지 비정상 종료인 롤백인지를 결정한다. -->
+	<bean
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		id="transactionManager">
+		<!-- DriverManagerDataSource DataSourceTransactionManager setDataSource 
+			. -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- @Transactional . -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
 </beans>
