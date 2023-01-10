@@ -8,14 +8,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%--객체를 호출하고 파라미터에 저장하여 반복한다.--%>
-	<c:forEach var="list" items="${list}">
-		<tr class="text-center">
-			<td>${list.qnaindex}</td>
-			<td>${list.qnatitle}</td>
-			<td>${list.qnacontents}</td>
+	<table>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>날짜</th>
 		</tr>
-	</c:forEach>
+
+		<c:forEach var="list" items="${list}">
+			<tr onclick="location.href='./QnaSelectDetail?qnaindex=${list.qnaindex}'">
+				<td>${list.qnaindex}</td>
+				<td>${list.qnatitle}</td>
+				<td>${list.qnacontents}</td>
+				<td>${list.qnadate}</td>
+				
+			<!-- admin 조건 추가 예정 , 어드민만 수정 삭제 가능-->
+				<td>
+					<a href="./QnaUpdate?qnaindex=${list.qnaindex}">수정</a>
+				</td>
+				<td>
+					<a href="./QnaDelete?qnaindex=${list.qnaindex}">삭제</a>
+				</td>	
+			</tr>
+			
+		</c:forEach>
+	</table>
 
 </body>
 </html>

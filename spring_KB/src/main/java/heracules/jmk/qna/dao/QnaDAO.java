@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import heracules.jmk.qna.dto.QnaDTO;
 
@@ -19,5 +20,22 @@ public class QnaDAO {
 	public List<QnaDTO> selectAll() {
 		return sqlSessionTemplate.selectList("selectAll");
 	}
-
+	
+	public QnaDTO select(int qnaindex) {
+		return sqlSessionTemplate.selectOne("select", qnaindex);
+	}
+	
+	@Transactional
+	public void insert(QnaDTO qnaDTO) {
+		sqlSessionTemplate.insert("insert", qnaDTO);
+	}
+	
+	public void update(QnaDTO qnaDTO) {
+		sqlSessionTemplate.update("update",qnaDTO);
+		
+	}
+	
+	public void delete(int qnaindex) {
+		sqlSessionTemplate.delete("delete", qnaindex);
+	}
 }

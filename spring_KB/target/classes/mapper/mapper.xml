@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="heracules.jmk.qna.dto">
+<mapper namespace="heracules.jmk.qna">
 	<select id="selectAll" resultType="QnaDTO">
 		select qnaindex, qnatitle,
-		qnacontents from
-		member_mk
+		qnacontents,to_char(qnadate,'yyyy-mm-dd')qnadate from member_mk
 	</select>
 	<select id="select" parameterType="QnaDTO" resultType="QnaDTO">
 		select
-		qnaindex, qnatitle, qnacontents, qnadate from member_mk
+		qnaindex, qnatitle, qnacontents, to_char(qnadate, 'yyyy-mm-dd')qnadate
+		from member_mk
 		where qnaindex = #{qnaindex}
 	</select>
 	<insert id="insert" parameterType="QnaDTO">
 		insert into member_mk
 		(qnaindex,qnatitle, qnacontents, qnadate)
-		values(#{qnaindex},
-		#{qnatitle}, #{qnacontents}, #{qnadate})
+		values
+		(qnaindex_seq.NEXTVAL, #{qnatitle}, #{qnacontents}, sysdate)
 	</insert>
 	<update id="update" parameterType="QnaDTO">
-		update member_mk set qnatitle
-		=
-		#{qnatitle}, qnacontents=#{qnacontents}
+		update member_mk set 
+		qnatitle = #{qnatitle}, qnacontents = #{qnacontents}, qnadate = sysdate
 		where qnaindex = #{qnaindex}
 	</update>
 	<delete id="delete" parameterType="QnaDTO">
