@@ -9,16 +9,21 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import heracules.jmk.qna.dto.QnaDTO;
+import heracules.jmk.qna.dto.SearchCriteria;
 
 @Repository
+
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+
 public class QnaDAO {
 	
 	@Autowired
+	
 	SqlSessionTemplate sqlSessionTemplate;
-
-	public List<QnaDTO> selectAll() {
-		return sqlSessionTemplate.selectList("selectAll");
+	
+	
+	public List<QnaDTO> selectAll(SearchCriteria scri) {
+		return sqlSessionTemplate.selectList("selectAll", scri);
 	}
 	
 	public QnaDTO select(int qnaindex) {
@@ -38,4 +43,9 @@ public class QnaDAO {
 	public void delete(int qnaindex) {
 		sqlSessionTemplate.delete("delete", qnaindex);
 	}
+	public int count(SearchCriteria scri) {
+		return sqlSessionTemplate.selectOne("listCount",scri);
+	}
+	
+	
 }

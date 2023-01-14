@@ -6,5 +6,8 @@
 		<!-- DeptDTO . -->
 		<typeAlias alias="QnaDTO"
 			type="heracules.jmk.qna.dto.QnaDTO" />
+		<typeAlias alias="Criteria"
+			type="heracules.jmk.qna.dto.Criteria" />
+			
 	</typeAliases>
 </configuration>

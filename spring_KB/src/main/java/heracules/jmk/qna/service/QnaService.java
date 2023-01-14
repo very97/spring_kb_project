@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import heracules.jmk.qna.dao.QnaDAO;
 import heracules.jmk.qna.dto.QnaDTO;
+import heracules.jmk.qna.dto.SearchCriteria;
 
 @Service
 public class QnaService {
@@ -16,8 +17,8 @@ public class QnaService {
 	public QnaDAO qnaDAO;
 	
 	//-----------------SelectAll
-	public List<QnaDTO> qnaselectAll() {
-		return qnaDAO.selectAll();
+	public List<QnaDTO> qnaselectAll(SearchCriteria scri)throws Exception {
+		return qnaDAO.selectAll(scri);
 	}
 	
 	//-----------------Select Detail
@@ -44,5 +45,13 @@ public class QnaService {
 	public void Delete(int qnaindex) {
 		qnaDAO.delete(qnaindex);
 	}
+
+	public int listCount(SearchCriteria scri) {
+		return qnaDAO.count(scri);
+		
+	}
+	
+	
+
 	
 }

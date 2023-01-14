@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="heracules.jmk.qna">
-	<select id="selectAll" resultType="QnaDTO">
-		select qnaindex, qnatitle,
-		qnacontents,to_char(qnadate,'yyyy-mm-dd')qnadate from member_mk
+
+	<select id="selectAll" resultType="QnaDTO"
+		parameterType="Criteria">
+		select qnaindex,qnatitle,qnacontents,qnadate
+		from (
+		select
+		qnaindex,qnatitle,qnacontents,qnadate,
+		row_number() over(order by
+		qnaindex desc) as rnum
+		from member_mk
+		) mp
+		<include refid="search"></include>
+		where rnum between #{rowStart} and #{rowEnd}
+		order by qnaindex desc
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND QNATITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND QNACONTENTS LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND QNADATE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (QNATITLE LIKE '%' || #{keyword} || '%') or
+				(QNACONTENTS LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+
+	<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(QNAINDEX)
+		  FROM MEMBER_MK
+		 WHERE QNAINDEX > 0
+	]]>
 	</select>
 	<select id="select" parameterType="QnaDTO" resultType="QnaDTO">
 		select
@@ -15,16 +44,21 @@
 		insert into member_mk
 		(qnaindex,qnatitle, qnacontents, qnadate)
 		values
-		(qnaindex_seq.NEXTVAL, #{qnatitle}, #{qnacontents}, sysdate)
+		(qnaindex_seq.NEXTVAL,
+		#{qnatitle}, #{qnacontents}, sysdate)
 	</insert>
 	<update id="update" parameterType="QnaDTO">
-		update member_mk set 
-		qnatitle = #{qnatitle}, qnacontents = #{qnacontents}, qnadate = sysdate
-		where qnaindex = #{qnaindex}
+		update member_mk set
+		qnatitle =
+		#{qnatitle}, qnacontents = #{qnacontents}, qnadate = sysdate
+		where
+		qnaindex = #{qnaindex}
 	</update>
 	<delete id="delete" parameterType="QnaDTO">
 		delete from member_mk
 		where
-		qnaindex =#{qnaindex}
+		qnaindex = #{qnaindex}
 	</delete>
+
+
 </mapper>

@@ -1,17 +1,18 @@
 package heracules.jmk.qna.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import heracules.jmk.qna.dto.PageMaker;
 import heracules.jmk.qna.dto.QnaDTO;
+import heracules.jmk.qna.dto.SearchCriteria;
 import heracules.jmk.qna.service.QnaService;
 
 @Controller
@@ -20,14 +21,39 @@ public class QnaController {
 	
 	@Autowired
 	private QnaService qnaservice;
+	
 	//==============Select=================
+//	@RequestMapping(value = "/QnaSelect", method = RequestMethod.GET)
+//	public String list(Model model, @ModelAttribute("scri") SearchCriteria criteria) throws Exception {
+//		
+//		logger.info("list");
+//		model.addAttribute("list", qnaservice.qnaselectAll(criteria));
+////		model.addAttribute("listCount", qnaservice.listCount());
+////		model.addAttribute("search", qnaservice.qnaselectAll(criteria));
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCri(criteria);
+//		pageMaker.setTotalCount(qnaservice.listCount());
+//		
+//		model.addAttribute("pageMaker", pageMaker);
+//		return "./board/board_select_all_view";
+//	}
+	
 	@RequestMapping(value = "/QnaSelect", method = RequestMethod.GET)
-	public String list(Model model) {
-		model.addAttribute("list", qnaservice.qnaselectAll());
-		logger.info("list", model);
+	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri, QnaDTO qnaDTO) throws Exception{
+		logger.info("list");
 		
+		model.addAttribute("list", qnaservice.qnaselectAll(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(qnaservice.listCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("scri", scri);
 		return "./board/board_select_all_view";
+		
 	}
+	
 	//==========Select Detail================
 	
 	@RequestMapping(value = "/QnaSelectDetail", method = RequestMethod.GET)
@@ -43,8 +69,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "/QnaInsert", method = RequestMethod.POST)
-	public String insert(Model model, QnaDTO qnaDTO) {
-		model.addAttribute("list", qnaservice.qnaselectAll());
+	public String insert(Model model, QnaDTO qnaDTO, SearchCriteria criteria) throws Exception {
+		model.addAttribute("list", qnaservice.qnaselectAll(criteria));
 		qnaservice.Insert(qnaDTO);
 		return "./board/board_insert_view";
 	}
@@ -76,6 +102,19 @@ public class QnaController {
 		return "./board/board_delete_view";
 	}
 	
+	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
+	public String dummy() throws Exception {
+		for (int i = 0; i < 100; i++) {
+			
+		QnaDTO qnaDTO = new QnaDTO();
+		qnaDTO.setQnatitle("더미용제목"+ i) ;
+		qnaDTO.setQnacontents("더미용내용" + i) ;
+		
+		qnaservice.Insert(qnaDTO);
+		
+		}
+		return "./board/board_insert_view";
+	}
 	
 }
 
