@@ -51,7 +51,7 @@ li {
 
 
 	<p align="right">
-		총 갯수 <Strong>${listCount}</Strong>
+		총 갯수 <Strong>${pageMaker.totalCount}</Strong>
 	</p>
 
 	<div>
@@ -86,7 +86,7 @@ li {
 			<option value="tc"
 				<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 		</select> <input type="text" name="keyword" id="keywordInput"
-			value="${scri.keyword}" />
+			value="${scri.keyword}"/>
 
 		<button id="searchBtn" type="button">검색</button>
 		<script>

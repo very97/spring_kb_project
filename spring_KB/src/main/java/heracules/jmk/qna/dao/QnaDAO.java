@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import heracules.jmk.qna.dto.QnaDTO;
+import heracules.jmk.qna.dto.ReplyDTO;
 import heracules.jmk.qna.dto.SearchCriteria;
 
 @Repository
@@ -47,5 +48,7 @@ public class QnaDAO {
 		return sqlSessionTemplate.selectOne("listCount",scri);
 	}
 	
-	
+	public List<ReplyDTO> readReply(int qnaindex) {
+		return sqlSessionTemplate.selectList("readreply", qnaindex);
+	}
 }

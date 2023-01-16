@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import heracules.jmk.qna.dao.QnaDAO;
 import heracules.jmk.qna.dto.QnaDTO;
+import heracules.jmk.qna.dto.ReplyDTO;
 import heracules.jmk.qna.dto.SearchCriteria;
 
 @Service
@@ -51,7 +52,9 @@ public class QnaService {
 		
 	}
 	
+	public List<ReplyDTO> readReply(int qnaindex) throws Exception {
+		return qnaDAO.readReply(qnaindex);
+	}
 	
-
 	
 }
