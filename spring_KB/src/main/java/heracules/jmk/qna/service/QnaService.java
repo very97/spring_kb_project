@@ -56,5 +56,7 @@ public class QnaService {
 		return qnaDAO.readReply(qnaindex);
 	}
 	
-	
+	public void writeReply(ReplyDTO replyDTO) throws Exception {
+		qnaDAO.writeReply(replyDTO);
+	}
 }

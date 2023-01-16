@@ -10,5 +10,6 @@
 			type="heracules.jmk.qna.dto.Criteria" />
 		<typeAlias alias="ReplyDTO"
 			type="heracules.jmk.qna.dto.ReplyDTO" />
+		
 	</typeAliases>
 </configuration>

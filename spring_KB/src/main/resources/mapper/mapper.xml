@@ -40,7 +40,7 @@
 	<!-- Select one -->
 	<select id="select" parameterType="QnaDTO" resultType="QnaDTO">
 		select
-		qnaindex, qnatitle, qnacontents, to_char(qnadate, 'yyyy-mm-dd')qnadate
+		qnaindex, qnatitle, qnacontents, to_char(qnadate, 'yyyy-mm-dd')qnadate, qnawriter
 		from member_mk
 		where qnaindex = #{qnaindex}
 	</select>
@@ -78,4 +78,19 @@
 		where qnaindex = #{qnaindex}
 	</select>
 
+	<!-- Insert Reply -->
+	<insert id="writeReply">
+		insert into mp_reply (
+		qnaindex,rno,content,writer,rtitle
+		)
+		values ( 
+		#{qnaindex},
+		mp_reply_seq.nextval,
+		#{content},
+		#{writer},
+		#{rtitle}
+		)
+		
+	</insert>
+	
 </mapper>

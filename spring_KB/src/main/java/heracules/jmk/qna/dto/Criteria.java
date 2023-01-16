@@ -1,15 +1,13 @@
 package heracules.jmk.qna.dto;
 
-import lombok.Data;
 
-@Data
 public class Criteria {
-
+	
+	
 	private int page;
 	private int perPageNum;
 	private int rowStart;
 	private int rowEnd;
-	
 	
 	
 	public Criteria() {
@@ -53,6 +51,15 @@ public class Criteria {
 	public int getRowEnd() {
 		rowEnd = rowStart + perPageNum - 1;
 		return rowEnd;
+	}
+	
+
+	public void setRowStart(int rowStart) {
+		this.rowStart = rowStart;
+	}
+
+	public void setRowEnd(int rowEnd) {
+		this.rowEnd = rowEnd;
 	}
 
 	@Override

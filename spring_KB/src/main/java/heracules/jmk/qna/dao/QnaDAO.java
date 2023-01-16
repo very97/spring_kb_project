@@ -44,11 +44,18 @@ public class QnaDAO {
 	public void delete(int qnaindex) {
 		sqlSessionTemplate.delete("delete", qnaindex);
 	}
+	
+	//------------게시물 총 갯수-----------------------------
 	public int count(SearchCriteria scri) {
 		return sqlSessionTemplate.selectOne("listCount",scri);
 	}
-	
+	//------------댓글 select------------------------------
 	public List<ReplyDTO> readReply(int qnaindex) {
 		return sqlSessionTemplate.selectList("readreply", qnaindex);
 	}
+	//------------댓글 insert------------------------------
+	public void writeReply(ReplyDTO replyDTO) {
+		sqlSessionTemplate.insert("writeReply", replyDTO);
+	}
+	
 }

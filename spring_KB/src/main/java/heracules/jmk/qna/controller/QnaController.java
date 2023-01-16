@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import heracules.jmk.qna.dto.PageMaker;
 import heracules.jmk.qna.dto.QnaDTO;
@@ -39,7 +40,24 @@ public class QnaController {
 
 	}
 
-//	//==========Select Detail================
+	// select detail + reply
+	@RequestMapping(value = "/QnaSelectDetail", method = RequestMethod.GET)
+	public String read(QnaDTO qnaDTO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
+		logger.info("read");
+//			model.addAttribute("qnaDTO", qnaservice.Select(qnaDTO.getQnaindex()));
+
+		model.addAttribute("read", qnaservice.readReply(qnaDTO.getQnaindex()));
+		model.addAttribute("scri", scri);
+		model.addAttribute("qnaDTO", qnaservice.Select(qnaDTO.getQnaindex()));
+
+		List<ReplyDTO> replyList = qnaservice.readReply(qnaDTO.getQnaindex());
+
+		model.addAttribute("replyList", replyList);
+
+		return "./board/board_select_detail_view";
+	}
+
+//	//==========Select Detail 처음것 ================
 //	
 //	@RequestMapping(value = "/QnaSelectDetail", method = RequestMethod.GET)
 //	public String detail(Model model, QnaDTO qnaDTO) {
@@ -47,6 +65,28 @@ public class QnaController {
 //		
 //		return "./board/board_select_detail_view";
 //	}
+
+	
+	
+//	 ------------Insert Reply---------------
+	@RequestMapping(value = "/replyWrite", method = RequestMethod.POST)
+	public String writeReply(ReplyDTO replyDTO, SearchCriteria scri, Model model) throws Exception {
+		logger.info("insert reply");
+		qnaservice.writeReply(replyDTO);
+		model.addAttribute("replyDTO", replyDTO);
+		
+		model.addAttribute("qnaindex", replyDTO.getQnaindex());
+		model.addAttribute("page", scri.getPage());
+		model.addAttribute("perPageNum", scri.getPerPageNum());
+		logger.info("scri : ", scri);
+
+		model.addAttribute("searchtype", scri.getSearchType());
+		model.addAttribute("keyword", scri.getKeyword());
+		
+		
+		return "./board/board_reply_refresh";
+		
+	}
 
 	// ---------Insert----------------
 	@RequestMapping(value = "/QnaInsert", method = RequestMethod.GET)
@@ -103,19 +143,4 @@ public class QnaController {
 		return "./board/board_insert_view";
 	}
 
-	@RequestMapping(value = "/QnaSelectDetail", method = RequestMethod.GET)
-	public String read(QnaDTO qnaDTO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
-		logger.info("read");
-//		model.addAttribute("qnaDTO", qnaservice.Select(qnaDTO.getQnaindex()));
-
-		model.addAttribute("read", qnaservice.readReply(qnaDTO.getQnaindex()));
-		model.addAttribute("scri", scri);
-		model.addAttribute("qnaDTO", qnaservice.Select(qnaDTO.getQnaindex()));
-		
-		List<ReplyDTO> replyList = qnaservice.readReply(qnaDTO.getQnaindex());
-		
-		model.addAttribute("replyList", replyList);
-		
-		return "./board/board_select_detail_view";
-	}
 }
