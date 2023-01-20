@@ -15,7 +15,6 @@
 </head>
 
 <body>
-<body>
 	<div id="wrapAll">
 		<div id="wrap">
 			<div id="headerWrap">
@@ -90,13 +89,11 @@
 					<div id="left_menu">왼쪽에 작은 메뉴</div>
 
 					<div id="center_menu">
-						<div>
-							<button type="button" onclick="location.href='./QnaInsert'">등록</button>
-						</div>
 
-						<div class="searchWrap">
-							<div class="search">
-								<select name="searchType">
+						<div id="searchWrap">
+
+							<div id="search">
+								<span>자주찾는 질문</span> <select name="searchType">
 									<option value="n"
 										<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
 									<option value="t"
@@ -111,6 +108,7 @@
 									value="${scri.keyword}" />
 								<button id="searchBtn" type="button">검색</button>
 							</div>
+
 							<script>
 								$(function() {
 									$('#searchBtn')
@@ -128,81 +126,71 @@
 								});
 							</script>
 						</div>
-
-						<table>
-							<colgroup>
-								<col width="6%">
-								<col>
-							</colgroup>
-							</div>
-							<thead>
-								<tr>
-									<th class="col">번호</th>
-									<th class="col">제목</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="list" items="${list}">
-									<tr
-										onclick="location.href='./QnaSelectDetail?qnaindex=${list.qnaindex}'">
-										<td class="td_index">${list.qnaindex}</td>
-										<td class="td_titlse">${list.qnatitle}</td>
-										<td><a href="./QnaUpdate?qnaindex=${list.qnaindex}">수정</a></td>
-										<td><a href="./QnaDelete?qnaindex=${list.qnaindex}">삭제</a></td>
-										
-										<!-- admin 조건 추가 예정 , 어드민만 수정 삭제 가능-->
-
+						<form>
+							<table>
+								<colgroup>
+									<col width="6%">
+									<col>
+									<col>
+									<col>
+								</colgroup>
+								<thead>
+									<tr>
+										<th class="col_num">번호</th>
+										<th class="col_title">제목</th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									<c:forEach var="list" items="${list}">
+										<tr
+											onclick="location.href='./QnaSelectDetail?qnaindex=${list.qnaindex}'">
+											<td class="td_index">${list.qnaindex}</td>
+											<td class="td_title">${list.qnatitle}</td>
+											<td class="btn_update">
+											<a href="./QnaUpdate?qnaindex=${list.qnaindex}">수정</a></td>
+											<td class="btn_delete">
+											<a href="./QnaDelete?qnaindex=${list.qnaindex}">삭제</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</form>
+						<div id="pageWrap">
+							<div id="page_menu">
+								<ul>
+									<c:if test="${pageMaker.prev}">
+										<li><a
+											href="QnaSelect${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a>
+										</li>
+									</c:if>
+
+									<c:forEach begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}" var="idx">
+										<li><a href="QnaSelect${pageMaker.makeSearch(idx)}">${idx}</a>
+										</li>
+									</c:forEach>
+
+									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<li><a
+											href="QnaSelect${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a>
+										</li>
+									</c:if>
+								</ul>
+							</div>
+							<p id="totalcount">전체 건수 : ${pageMaker.totalCount}건</p>
+						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 
-		<div id="page_wrapper">
 
-			<div id="call_menu"></div>
-
-		</div>
-
-		<div id="page_menu"></div>
-		<div>
-			<ul>
-				<c:if test="${pageMaker.prev}">
-					<li><a
-						href="QnaSelect${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a>
-					</li>
-				</c:if>
-
-				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
-					var="idx">
-					<li><a href="QnaSelect${pageMaker.makeSearch(idx)}">${idx}</a>
-					</li>
-				</c:forEach>
-
-				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					<li><a
-						href="QnaSelect${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a>
-					</li>
-				</c:if>
-			</ul>
-		</div>
 	</div>
 	<div id="footerWrap">
 		<div></div>
 	</div>
-	</div>
-	</div>
 </body>
 
-<form role="form" method="get">
-
-	<p>
-		총 갯수 <Strong>${pageMaker.totalCount}</Strong>
-	</p>
-
-</form>
 </body>
 </html>

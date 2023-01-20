@@ -2,15 +2,14 @@
 #wrapAll {
     max-width: 1000px;
     margin: 0 auto;
-    overflow: hidden;
 }
 
 /* 헤더 설정 */
 #headerWrap {
-    height: 60px;
+	
+    height: 80px;
     left: 221px;
     top: 0;
-    background-color: brown;
 }
 
 #HEADER {
@@ -115,9 +114,6 @@
 
 #contentWrap {
     overflow: hidden;
-    height: 650px;
-    left: 220px;
-    top: 77px;
 }
 
 #content {
@@ -141,12 +137,11 @@
 
     height: 332px;
     margin-left: 0px;
-    background-color: beige;
     width: 216px;
     float: left;
     position: relative;
     z-index: 99;
-
+	background: maroon;
 }
 
 #center_menu {
@@ -159,7 +154,6 @@
     margin-right: 0;
     zoom: 1;
     z-index: 0;
-    background-color: beige;
 
 }
 
@@ -198,3 +192,67 @@
     background-color: #7c7363;
 }
 
+
+.col_title {
+	width: 80%;
+	
+}
+.col_num {
+	width: 9%;
+}
+.td_index {
+	width: 9%;
+	margin: 0 3px 0 0;
+}
+
+.td_title {
+	font-size: 12px;
+	width: 80%;
+	text-align: left;
+}
+
+#page_menu {
+	height: 100px;
+	text-align: center;
+}
+
+#page_menu > ul {
+	
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	float: left;
+}
+#page_menu > ul > li {
+	
+	display: inline-block;
+	margin: 0 0 0 10px;
+	padding: 0;
+	border: 0;
+	float: left;
+	
+}
+#page_menu {
+	width: 420px;
+	height: 40px;
+	margin: 0 auto;
+	display: flex;
+}
+
+#searchWrap {
+	height: 70px;
+	border: 1px solid;
+	border-style: groove;
+}
+
+#search {
+	width: 400px;
+	height: 20px;
+	margin: 20px auto 0 auto;	
+}
+
+#totalcount {
+	text-align: right;
+	font-size: 12px;
+	color: blue;
+}

@@ -25,16 +25,28 @@ table {
 	
 }
 th {
+	display:inline-block;
 	font-size: 12px;
-	padding: 10px 7px 7px 8px;
+	padding: 0px 7px 0px 8px;
+	font-weight: bold;
+	
 }
 
 tr {
-	font-size: 12px;
-	padding: 10px 7px 7px 8px;	
+	display:block;
+	font-size: 11px;
+	padding: 8px 7px 10px 8px;	
+	border-bottom: 1px solid #c8c8c8;
 }
 
 td {
+	display:inline-block;
 	text-align: center;
 }
+thead > tr {
+	background: #fbfbfb;
+	border-bottom: 1px solid #c8c8c8;
+	border-top: 2px solid #c8c8c8;
+}
+
 
