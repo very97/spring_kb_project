@@ -24,6 +24,7 @@ public class QnaDAO {
 	
 	
 	public List<QnaDTO> selectAll(SearchCriteria scri) {
+		
 		return sqlSessionTemplate.selectList("selectAll", scri);
 	}
 	
@@ -38,7 +39,6 @@ public class QnaDAO {
 	
 	public void update(QnaDTO qnaDTO) {
 		sqlSessionTemplate.update("update",qnaDTO);
-		
 	}
 	
 	public void delete(int qnaindex) {
@@ -57,5 +57,8 @@ public class QnaDAO {
 	public void writeReply(ReplyDTO replyDTO) {
 		sqlSessionTemplate.insert("writeReply", replyDTO);
 	}
-	
+	//---------------조회수 hit--------------------
+	public void hit(int qnaindex) {
+		sqlSessionTemplate.update("hit",qnaindex);
+	}
 }

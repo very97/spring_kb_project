@@ -1,0 +1,40 @@
+/* global 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-family: 'Malgun Gothic', Dotum,AppleGothic,Arial,Sans-serif;
+    box-sizing: border-box;
+}
+
+ul > li > a {
+    color: black;
+    text-decoration-line: none;
+}
+
+ul > li > a:link {
+    color: black;
+    text-decoration: none;
+}
+ul > li > a:visited {
+    text-decoration: none;
+}
+
+table {
+	display: inline-block;
+	
+}
+th {
+	font-size: 12px;
+	padding: 10px 7px 7px 8px;
+}
+
+tr {
+	font-size: 12px;
+	padding: 10px 7px 7px 8px;	
+}
+
+td {
+	text-align: center;
+}
+

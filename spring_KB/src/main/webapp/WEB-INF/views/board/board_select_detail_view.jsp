@@ -15,8 +15,11 @@
 			<td>${qnaDTO.qnatitle}</td>
 			<td>${qnaDTO.qnacontents}</td>
 			<td>${qnaDTO.qnadate}</td>
+			<td>${qnaDTO.qnawriter }</td>
+			<td>${qnaDTO.hit}</td>
 		</tr>
 	</table>
+
 
 	<table id="reply">
 		<c:forEach items="${replyList}" var="replyList">

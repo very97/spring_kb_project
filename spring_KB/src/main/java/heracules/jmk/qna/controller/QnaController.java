@@ -40,11 +40,11 @@ public class QnaController {
 
 	}
 
-	// select detail + reply
+	// select detail + reply + 조회수
 	@RequestMapping(value = "/QnaSelectDetail", method = RequestMethod.GET)
 	public String read(QnaDTO qnaDTO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
-//			model.addAttribute("qnaDTO", qnaservice.Select(qnaDTO.getQnaindex()));
+//		model.addAttribute("qnaDTO", qnaservice.Select(qnaDTO.getQnaindex()));
 
 		model.addAttribute("read", qnaservice.readReply(qnaDTO.getQnaindex()));
 		model.addAttribute("scri", scri);
@@ -131,12 +131,13 @@ public class QnaController {
 	// 테스트를 위한 코드
 	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
 	public String dummy() throws Exception {
-		for (int i = 0; i < 100; i++) {
+		for (int i = 300; i < 1000; i++) {
 
 			QnaDTO qnaDTO = new QnaDTO();
 			qnaDTO.setQnatitle("더미용제목" + i);
 			qnaDTO.setQnacontents("더미용내용" + i);
-
+			qnaDTO.setQnawriter("더미용작성자"+i);
+			
 			qnaservice.Insert(qnaDTO);
 
 		}

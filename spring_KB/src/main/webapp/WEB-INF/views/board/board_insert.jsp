@@ -16,7 +16,11 @@
 	<div>
 		<label> 내용 </label> <input type="text" name="qnacontents">
 	</div>
-
+	
+	<div>
+		<label> 작성자 </label> <input type="text" name="qnawriter">
+	</div>
+	
 	<div>
 		<input type="submit" value="등록!">
 	</div>

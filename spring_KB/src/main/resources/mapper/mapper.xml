@@ -4,10 +4,10 @@
 	<!-- Select All + Paging + Search -->
 	<select id="selectAll" resultType="QnaDTO"
 		parameterType="Criteria">
-		select qnaindex,qnatitle,qnacontents,qnadate
+		select qnaindex,qnatitle,qnacontents,qnadate,qnawriter,hit
 		from (
 		select
-		qnaindex,qnatitle,qnacontents,qnadate,
+		qnaindex,qnatitle,qnacontents,qnadate,qnawriter,hit,
 		row_number() over(order by
 		qnaindex desc) as rnum
 		from member_mk
@@ -19,7 +19,6 @@
 	</select>
 
 	<select id="listCount" resultType="int">
-
 		SELECT COUNT(QNAINDEX)
 		FROM MEMBER_MK
 		WHERE 1=1
@@ -40,26 +39,33 @@
 	<!-- Select one -->
 	<select id="select" parameterType="QnaDTO" resultType="QnaDTO">
 		select
-		qnaindex, qnatitle, qnacontents, to_char(qnadate, 'yyyy-mm-dd')qnadate, qnawriter
+		qnaindex, qnatitle, qnacontents, to_char(qnadate,
+		'yyyy-mm-dd')qnadate, qnawriter, hit
 		from member_mk
-		where qnaindex = #{qnaindex}
+		where qnaindex = 
+		#{qnaindex}
 	</select>
 
 	<!-- Create or Insert -->
 	<insert id="insert" parameterType="QnaDTO">
 		insert into member_mk
-		(qnaindex,qnatitle, qnacontents, qnadate)
+		(qnaindex, qnatitle, qnacontents, qnadate, qnawriter)
 		values
 		(qnaindex_seq.NEXTVAL,
-		#{qnatitle}, #{qnacontents}, sysdate)
+		#{qnatitle}, #{qnacontents}, sysdate,
+		#{qnawriter})
 	</insert>
 
 	<!-- Update -->
 	<update id="update" parameterType="QnaDTO">
 		update member_mk set
-		qnatitle =
-		#{qnatitle}, qnacontents = #{qnacontents}, qnadate = sysdate
+		qnatitle = #{qnatitle},
+		qnacontents = #{qnacontents},
+		qnadate = sysdate,
+		qnawriter = ${qnawriter}
+		
 		where
+		
 		qnaindex = #{qnaindex}
 	</update>
 
@@ -73,7 +79,8 @@
 	<!-- Select Reply -->
 	<select id="readreply" resultType="ReplyDTO">
 		select
-		qnaindex, rtitle, content, writer, regdate
+		qnaindex, rtitle,
+		content, writer, regdate
 		from mp_reply
 		where qnaindex = #{qnaindex}
 	</select>
@@ -83,14 +90,20 @@
 		insert into mp_reply (
 		qnaindex,rno,content,writer,rtitle
 		)
-		values ( 
+		values (
 		#{qnaindex},
 		mp_reply_seq.nextval,
 		#{content},
 		#{writer},
 		#{rtitle}
 		)
-		
+
 	</insert>
+	<!-- hit -->
+	<update id="hit" parameterType="int">
+		UPDATE MEMBER_MK SET
+		HIT = HIT + 1
+		WHERE QNAINDEX = #{qnaindex}
+	</update>
 	
 </mapper>

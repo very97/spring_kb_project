@@ -1,0 +1,200 @@
+
+#wrapAll {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* 헤더 설정 */
+#headerWrap {
+    height: 60px;
+    left: 221px;
+    top: 0;
+    background-color: brown;
+}
+
+#HEADER {
+    margin: 20px 30px 0;
+    background-color: white;
+}
+/* nav 설정 */
+#navWrap {
+    height: 120px;
+    left: 251px;
+    top: 77px;
+}
+
+#nav_top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 20px;
+}
+
+#nav_top > * ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#nav_top > * li {
+    margin: 0 20px 0 0;
+    padding: 0;
+    border: 0;
+    float: left;
+}
+
+#kb_logo {
+    margin-top: 10px;
+    height: 34px;
+    background-color: white;
+}
+
+#kb_logo > * img {
+
+    margin-left: 20px;
+    float: left;
+}
+
+#logo_li_login {
+    font-size: 12px;
+    line-height: 26px;
+    list-style: none;
+    float: left;
+    margin: 0 0 0 20px;
+    border: solid 1px #b2b2b2;
+    width: 60px;
+    text-align: center;
+    font-weight: normal;
+}
+
+#logo_li_cert {
+    font-size: 12px;
+    line-height: 26px;
+    list-style: none;
+    float: left;
+    border: solid 1px #b2b2b2;
+    width: 70px;
+    text-align: center;
+    font-weight: normal;
+}
+
+#nav_wrap {
+    margin: 0 auto;
+    height: 42px;
+}
+
+
+#top menu > ul {
+    display: block;
+    height: 42px;
+}
+
+.li_btn {
+    overflow: hidden;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #4e473f;
+}
+.li_btn > a:hover {
+    color: white;
+}
+
+.li_btn > a {
+    width: auto, 100%;
+    font-size: 15px;
+    margin: 8px 22px;
+    text-align: center;
+    line-height: 1.65;
+    display: inline-block;
+    color: white;
+    font-family: '맑은 고딕','Malgun Gothic','돋움',Dotum,Helvetica,AppleGothic,Sans-serif;
+}
+
+#contentWrap {
+    overflow: hidden;
+    height: 650px;
+    left: 220px;
+    top: 77px;
+}
+
+#content {
+
+    height: 620px;
+}
+
+#top_menu {
+
+    height: 40px;
+}
+
+#nav {
+	
+	display: inline;
+    margin: 0 auto;
+    height: 40px;
+}
+
+#left_menu {
+
+    height: 332px;
+    margin-left: 0px;
+    background-color: beige;
+    width: 216px;
+    float: left;
+    position: relative;
+    z-index: 99;
+
+}
+
+#center_menu {
+    max-width: 70%;
+    width: 70%;
+    height: 500px;
+    float: right;
+    position: relative;
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    z-index: 0;
+    background-color: beige;
+
+}
+
+#call_menu {
+    width: 500px;
+    border: solid, black, 1px;
+    display: flex;
+}
+
+#menu_wrapper {
+    width: 100%;
+}
+
+#footerWrap {
+    height: 200px;
+    margin-top: 50px;
+}
+
+#footerWrap {
+    border-top: 1px solid;
+
+}
+
+#kb_logo > ul > li > a:hover {
+    color:black;
+    cursor: pointer;
+    text-decoration: none;
+}
+#nav_top > nav > ul > li > a:hover {
+    color:black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#top_menu > ul > li:hover {
+    background-color: #7c7363;
+}
+

@@ -12,7 +12,23 @@ public class QnaDTO {
 	private String qnatitle;
 	private String qnacontents;
 	private Date qnadate;
+	private int hit;
+	private String qnawriter;
 	
+	
+	
+	public String getQnawriter() {
+		return qnawriter;
+	}
+	public void setQnawriter(String qnawriter) {
+		this.qnawriter = qnawriter;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 	public Date getQnadate() {
 		return qnadate;
 	}
@@ -37,13 +53,10 @@ public class QnaDTO {
 	public void setQnacontents(String qnacontents) {
 		this.qnacontents = qnacontents;
 	}
-	
 	@Override
 	public String toString() {
 		return "QnaDTO [qnaindex=" + qnaindex + ", qnatitle=" + qnatitle + ", qnacontents=" + qnacontents + ", qnadate="
-				+ qnadate + "]";
+				+ qnadate + ", hit=" + hit + ", qnawriter=" + qnawriter + "]";
 	}
-	
-	
 	
 }
