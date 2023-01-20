@@ -187,47 +187,35 @@
 
 	</div>
 	<div id="footerWrap">
-		<div>
-			<table>
-				<tr class="text-center">
-					<td>${qnaDTO.qnaindex}</td>
-					<td>${qnaDTO.qnatitle}</td>
-					<td>${qnaDTO.qnacontents}</td>
-					<td>${qnaDTO.qnadate}</td>
-					<td>${qnaDTO.qnawriter }</td>
-					<td>${qnaDTO.hit}</td>
-				</tr>
-			</table>
-
-
-			<table id="reply">
-				<c:forEach items="${replyList}" var="replyList">
-					<tr class="text-center" id="replyList">
-						<td>${replyList.rtitle}</td>
-						<td>${replyList.content}</td>
-						<td>${replyList.writer}</td>
-						<td><fmt:formatDate value="${replyList.regdate}"
-								pattern="yyyy-MM-dd" /></td>
-					</tr>
-				</c:forEach>
-			</table>
-
+		<div id="replyWrap">
 			<form action="./replyWrite" name="replyForm" method="post">
-				<input type="hidden" id="qnaindex" name="qnaindex"
-					value="${qnaDTO.qnaindex}"> <input type="hidden" id="page"
-					name="page" value="${scri.page}"> <input type="hidden"
-					id="perPageNum" name="perPageNum" value="${scri.perPageNum}">
-				<input type="hidden" id="searchType" name="searchType"
-					value="${scri.searchType}"> <input type="hidden"
-					id="keyword" name="keyword" value="${scri.keyword}"> <label>답변
-					제목 : </label><input type="text" id="rtitle" name="rtitle" /> <label>작성자
-					: </label><input type="text" id="writer" name="writer" /> <label>내용
-					: </label><input type="text" name="content" />
-				<button type="submit" class="replyWriteBtn">작성</button>
+				<table>
+					<thead>
+					<tr>
+						<th>
+							제목: <input id="rtitlebox" type="text" name="rtitle">
+						</th>
+					</tr>
+					<thead>
+			
+					<tbody>
+					<tr>
+						<th>
+							내용: <input id="contentbox" type="text" name="content" style="width:300px;height:200px;font-size:12px;">
+						</th>
+					</tr>
+					</tbody>	
+					<tbody>
+					<tr>
+						<th>
+							작성자 : <input id="writerbox" type="text" name="writer">					
+						</th>
+					</tr>
+					</tbody>
+				</table>
 			</form>
-
-
 			<div>
+				<button type="submit" class="replyWriteBtn">작성</button>
 				<button onclick="location='./QnaSelect'">뒤로</button>
 				<button onclick="location='./QnaInsert'">글쓰기</button>
 			</div>
