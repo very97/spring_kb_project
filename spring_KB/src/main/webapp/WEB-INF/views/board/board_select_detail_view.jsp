@@ -154,53 +154,54 @@
 							</tbody>
 						</table>
 						<div id="pageWrap">
-							
+
 							<p id="totalcount">전체 건수 : ${pageMaker.totalCount}건</p>
 						</div>
+						<div id="footerWrap">
+							<div id="replyWrap">
+								<form action="./replyWrite" name="replyForm" method="post">
+									<input type="text" name="qnaindex" value="${param.qnaindex}"
+										hidden="hidden">
+									<table>
+										<thead>
+											<tr>
+												<th>제목: <input id="rtitlebox" type="text" name="rtitle">
+												</th>
+											</tr>
+										<thead>
+										<tbody>
+											<tr>
+												<th>내용: <input id="contentbox" type="text"
+													name="content"
+													style="width: 300px; height: 200px; font-size: 12px;">
+												</th>
+											</tr>
+										</tbody>
+										<tbody>
+											<tr>
+												<th>작성자 : <input id="writerbox" type="text"
+													name="writer">
+												</th>
+											</tr>
+										</tbody>
+									</table>
 
+									<button type="submit" class="replyWriteBtn">작성</button>
+								</form>
+								<button onclick="location='./QnaInsert'">글쓰기</button>
+								<button onclick="location='./QnaSelect'">뒤로</button>
+							</div>
+						</div>
 					</div>
 				</div>
 
+
 			</div>
 		</div>
 
 
 	</div>
-	<div id="footerWrap">
-		<div id="replyWrap">
-			<form action="./replyWrite" name="replyForm" method="post">
-				<table>
-					<thead>
-					<tr>
-						<th>
-							제목: <input id="rtitlebox" type="text" name="rtitle">
-						</th>
-					</tr>
-					<thead>
-			
-					<tbody>
-					<tr>
-						<th>
-							내용: <input id="contentbox" type="text" name="content" style="width:300px;height:200px;font-size:12px;">
-						</th>
-					</tr>
-					</tbody>	
-					<tbody>
-					<tr>
-						<th>
-							작성자 : <input id="writerbox" type="text" name="writer">					
-						</th>
-					</tr>
-					</tbody>
-				</table>
-			</form>
-			<div>
-				<button type="submit" class="replyWriteBtn">작성</button>
-				<button onclick="location='./QnaSelect'">뒤로</button>
-				<button onclick="location='./QnaInsert'">글쓰기</button>
-			</div>
-		</div>
-	</div>
+
 
 
 

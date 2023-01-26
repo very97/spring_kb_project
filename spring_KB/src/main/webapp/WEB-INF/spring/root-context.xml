@@ -25,9 +25,9 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
 		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:xe" />
-		<property name="username" value="scott" />
-		<property name="password" value="tiger" />
+			value="jdbc:log4jdbc:oracle:thin:@192.168.0.140:1521:xe" />
+		<property name="username" value="heraclass" />
+		<property name="password" value="1234" />
 	</bean>
 	<!-- SqlSessionFactory (Bean) (Bean) . -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
