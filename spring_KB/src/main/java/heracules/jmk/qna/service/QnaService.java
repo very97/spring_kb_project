@@ -52,7 +52,11 @@ public class QnaService {
 	public void Delete(int qnaindex) {
 		qnaDAO.delete(qnaindex);
 	}
-
+	
+	public void Delete(ReplyDTO replyDTO, QnaDTO qnaDTO) {
+		qnaDAO.delete(replyDTO,qnaDTO);
+	}
+	
 	public int listCount(SearchCriteria scri) {
 		return qnaDAO.count(scri);
 		

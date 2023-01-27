@@ -56,6 +56,7 @@
 		<div id="contentWrap">
 			<div id="nav_wrap">
 				<div id="top_menu">
+				
 					<ul>
 						<li class="li_btn"><a style="text-decoration: none">고객상담</a>
 						</li>
@@ -123,7 +124,11 @@
 								});
 							</script>
 						</div>
-
+						
+						<form action="./replyDelete" method="GET">
+						<input type="hidden" name="qnaindex" value="${qnaDTO.qnaindex}">
+						
+											
 						<table>
 							<colgroup>
 								<col width="6%">
@@ -141,18 +146,25 @@
 							<tbody>
 								<c:forEach items="${replyList}" var="replyList">
 									<tr class="text-center" id="replyList">
-										<th>제목 : ${replyList.rtitle}</th>
+										<th>제목 : ${replyList.rtitle}<br></th>
 									</tr>
 									<tr>
-										<td>${replyList.content}</td>
-										<td>${replyList.writer}</td>
+										<td>${replyList.content}<br>
+										</td>
+
+										<td>${replyList.writer}<br></td>
+
 										<td><fmt:formatDate value="${replyList.regdate}"
 												pattern="yyyy-MM-dd" /></td>
-
+										<td>
+											<a href="./replyDelete?rno=${replyList.rno}&qnaindex=${qnaDTO.qnaindex}">삭제</a>
+										</td>
 									</tr>
+									
 								</c:forEach>
 							</tbody>
 						</table>
+						</form>
 						<div id="pageWrap">
 
 							<p id="totalcount">전체 건수 : ${pageMaker.totalCount}건</p>

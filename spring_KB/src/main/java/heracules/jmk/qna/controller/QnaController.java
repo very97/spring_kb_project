@@ -127,7 +127,7 @@ public class QnaController {
 		qnaservice.Delete(qnaDTO.getQnaindex());
 		return "./board/board_delete_view";
 	}
-
+	
 	// 테스트를 위한 코드
 	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
 	public String dummy() throws Exception {
@@ -143,5 +143,11 @@ public class QnaController {
 		}
 		return "./board/board_insert_view";
 	}
-
+	
+	@RequestMapping(value = "/replyDelete", method = RequestMethod.GET)
+	
+	public String ReplyDelete(ReplyDTO replyDTO, QnaDTO qnaDTO) {
+		qnaservice.Delete(replyDTO, qnaDTO);
+		return "./board/board_reply_delete_refresh";
+	}
 }

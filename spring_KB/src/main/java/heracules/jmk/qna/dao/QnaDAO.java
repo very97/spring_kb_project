@@ -61,4 +61,7 @@ public class QnaDAO {
 	public void hit(int qnaindex) {
 		sqlSessionTemplate.update("hit",qnaindex);
 	}
+	public void delete(ReplyDTO replyDTO, QnaDTO qnaDTO) {
+		sqlSessionTemplate.delete("replyDelete", replyDTO);
+	}
 }
