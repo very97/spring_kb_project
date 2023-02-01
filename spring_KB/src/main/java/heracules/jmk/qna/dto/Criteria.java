@@ -3,7 +3,6 @@ package heracules.jmk.qna.dto;
 
 public class Criteria {
 	
-	
 	private int page;
 	private int perPageNum;
 	private int rowStart;

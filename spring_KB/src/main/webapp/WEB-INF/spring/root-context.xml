@@ -15,10 +15,10 @@
 		batis.org/schema/mybatis-spring-1.2.xsd http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 
-	<!-- 빈 의 (Bean) . -->
+	<!-- 빈 (Bean) . -->
 	<context:component-scan
 		base-package="heracules.jmk.qna" />
-	<!-- method clone . -->
+	<!-- log4j + DB 빈 생성 -->
 	<bean
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		id="dataSource" destroy-method="clone">
@@ -29,29 +29,31 @@
 		<property name="username" value="heraclass" />
 		<property name="password" value="1234" />
 	</bean>
-	<!-- SqlSessionFactory (Bean) (Bean) . -->
+	<!-- SqlSessionFactory (Bean) -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
 		id="sqlSessionFactoryBean">
-		<!-- DriverManagerDataSource SqlSessionFactoryBean setDataSource . -->
+
+		<!-- DriverManagerDataSource SqlSessionFactoryBean setDataSource -->
 		<property name="dataSource" ref="dataSource" />
-		<!--Configuration . -->
+		<!--Configuration -->
 		<property name="configLocation"
 			value="classpath:/configuration/config.xml" />
-		<!-- Mapper . -->
+		<!-- Mapper -->
 		<property name="mapperLocations"
 			value="classpath:/mapper/mapper.xml" />
 	</bean>
-	<!-- SqlSession SqlSession . -->
+	<!-- SqlSession SqlSession -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate"
 		id="sqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactoryBean" />
 	</bean>
+
+	<!-- 트랜잭션을 위해 작성 -->
 	<!-- 트랜잭션이 종료할 때 정상 종료인 커밋인지 비정상 종료인 롤백인지를 결정한다. -->
 	<bean
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		id="transactionManager">
-		<!-- DriverManagerDataSource DataSourceTransactionManager setDataSource 
-			. -->
+		<!-- DriverManagerDataSource DataSourceTransactionManager setDataSource -->
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<!-- @Transactional . -->

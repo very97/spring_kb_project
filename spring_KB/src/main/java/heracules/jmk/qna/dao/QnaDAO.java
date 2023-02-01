@@ -13,34 +13,34 @@ import heracules.jmk.qna.dto.ReplyDTO;
 import heracules.jmk.qna.dto.SearchCriteria;
 
 @Repository
-
+//cglib AOP
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 
 public class QnaDAO {
 	
 	@Autowired
-	
+	//sql 템플릿을 사용
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	
+	//전체 조회를 이용하여 검색 기능 구현
 	public List<QnaDTO> selectAll(SearchCriteria scri) {
 		
 		return sqlSessionTemplate.selectList("selectAll", scri);
 	}
-	
+	// Read
 	public QnaDTO select(int qnaindex) {
 		return sqlSessionTemplate.selectOne("select", qnaindex);
 	}
-	
+	// Create
 	@Transactional
 	public void insert(QnaDTO qnaDTO) {
 		sqlSessionTemplate.insert("insert", qnaDTO);
 	}
-	
+	// Update
 	public void update(QnaDTO qnaDTO) {
 		sqlSessionTemplate.update("update",qnaDTO);
 	}
-	
+	// Delete
 	public void delete(int qnaindex) {
 		sqlSessionTemplate.delete("delete", qnaindex);
 	}
@@ -57,10 +57,11 @@ public class QnaDAO {
 	public void writeReply(ReplyDTO replyDTO) {
 		sqlSessionTemplate.insert("writeReply", replyDTO);
 	}
-	//---------------조회수 hit--------------------
+	//---------------조회수--------------------
 	public void hit(int qnaindex) {
 		sqlSessionTemplate.update("hit",qnaindex);
 	}
+	//------------- 댓글 삭제 ------------------
 	public void delete(ReplyDTO replyDTO, QnaDTO qnaDTO) {
 		sqlSessionTemplate.delete("replyDelete", replyDTO);
 	}
